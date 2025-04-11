@@ -1,4 +1,4 @@
-# RAM-based Secure File Sharing
+# RAM-based Secure File Sharing (Streamlit Version)
 
 A secure file sharing application that uses RAM for temporary storage and client-side file handling. Files are never stored on the server's disk and are automatically deleted after download or after 1 hour.
 
@@ -6,73 +6,62 @@ A secure file sharing application that uses RAM for temporary storage and client
 
 - Secure file sharing using RAM storage
 - Client-side file handling
-- File encryption
+- File encryption using Fernet (symmetric encryption)
 - Automatic file deletion after download or timeout
 - No database required
 - Simple share code system
+- Real-time storage statistics
 
 ## Setup
 
 1. Clone the repository
 2. Install dependencies:
    ```bash
-   npm install
-   cd client
-   npm install
+   pip install -r requirements.txt
    ```
 
 3. Create a `.env` file in the root directory with:
    ```
-   PORT=3000
    ENCRYPTION_KEY=your-secure-encryption-key-here
    ```
 
-4. Start the backend server:
+4. Run the Streamlit app:
    ```bash
-   npm start
-   ```
-
-5. Start the frontend development server:
-   ```bash
-   cd client
-   npm start
+   streamlit run app.py
    ```
 
 ## Usage
 
 1. To share a file:
-   - Click "Choose File" to select a file
-   - Click "Share File"
+   - Click "Choose a file to share" to select a file
+   - The file will be automatically uploaded and encrypted
    - Copy the generated share code
    - Share the code with others
 
 2. To download a file:
-   - Enter the share code
+   - Enter the share code in the download section
    - Click "Download File"
    - The file will be downloaded to your computer
 
 ## Security
 
-- Files are encrypted before being stored in RAM
+- Files are encrypted using Fernet (symmetric encryption) before being stored in RAM
 - Files are automatically deleted after download or after 1 hour
 - No files are stored on the server's disk
 - Share codes are randomly generated and unique
 
-## Deployment
+## Deployment on Streamlit Cloud
 
-This application can be deployed on Render:
-
-1. Create a new Web Service on Render
-2. Connect your GitHub repository
-3. Set the following environment variables:
-   - `PORT`
+1. Push your code to GitHub
+2. Go to [Streamlit Cloud](https://streamlit.io/cloud)
+3. Connect your GitHub repository
+4. Set the following environment variables:
    - `ENCRYPTION_KEY`
-4. Set the build command: `cd client && npm install && npm run build`
-5. Set the start command: `npm start`
+5. Deploy!
 
 ## Technologies Used
 
-- Backend: Node.js, Express
-- Frontend: React
-- Security: CryptoJS
-- Storage: In-memory Map 
+- Framework: Streamlit
+- Security: Cryptography (Fernet)
+- Storage: Streamlit Session State (RAM)
+- Environment Variables: python-dotenv 
